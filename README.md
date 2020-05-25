@@ -6,7 +6,7 @@
 
 ## Use the link below to see a live demo:
 
-- [Linear-Gradient-picker] https://ahmaddalao.github.io/Linear-Gradient-picker/
+- [Linear-Gradient-picker] https://ahmaddalao.github.io/calculator/
 
 
 ### Project was built using HTML CSS and JavaScript
