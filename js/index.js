@@ -1,4 +1,9 @@
-var button = document.querySelectorAll("button.numbers").length; // working
+const button = document.querySelectorAll("button.numbers").length; // working
+var tempHolder;
+let total,
+    convertedTotal;
+
+// there are two problems to fix first , when clicking = the value disappear and when trying to add negative number with positive number it show Nan
 
 for (let i = 0; i < button; i++) { // working
 
@@ -16,57 +21,54 @@ for (let i = 0; i < button; i++) { // working
         }
         result.appendChild(temp); // working
 
-        let tempHolder = result.textContent; // great working so far
+        tempHolder = result.textContent; // great working so far
         // console.log("am temp holder to be sliced " + tempHolder);
 
 
-        // console.log(tempHolder.length);
-        var total;
-        var convertedTotal;
-        if (tempHolder.includes("+")) {
-            let splitted = tempHolder.split("+");
-            let firstNumber = parseFloat(splitted[0]);
-            let secondNumber = parseFloat(splitted[1]);
-            total = add(firstNumber, secondNumber);
-            convertedTotal = total.toString();
-            console.log("am total holder inside +  " + convertedTotal);
 
+        if (tempHolder.includes("+")) {
+            convertedTotal = splitNumber("+");
+            console.log("am convertedTotal inside +  " + convertedTotal);
         }
         if (tempHolder.includes("-")) {
-            let splitted = tempHolder.split("-");
-            let firstNumber = parseFloat(splitted[0]);
-            let secondNumber = parseFloat(splitted[1]);
-            total = subtract(firstNumber, secondNumber);
-            convertedTotal = total.toString();
-            console.log("am total holder inside - " + convertedTotal);
+            convertedTotal = splitNumber("-");
+            console.log("am convertedTotal inside - " + convertedTotal);
         }
         if (tempHolder.includes("/")) {
-            let splitted = tempHolder.split("/");
-            let firstNumber = parseFloat(splitted[0]);
-            let secondNumber = parseFloat(splitted[1]);
-            total = division(firstNumber, secondNumber);
-            convertedTotal = total.toString();
-            console.log("am total holder inside / " + convertedTotal);
+            convertedTotal = splitNumber("/");
+            console.log("am convertedTotal inside / " + convertedTotal);
         }
         if (tempHolder.includes("x")) {
-            let splitted = tempHolder.split("x");
-            let firstNumber = parseFloat(splitted[0]);
-            let secondNumber = parseFloat(splitted[1]);
-            total = multiplication(firstNumber, secondNumber);
-            convertedTotal = total.toString();
-            console.log("am total holder inside x " + convertedTotal);
+            convertedTotal = splitNumber("x");
+            console.log("am convertedTotal inside x " + convertedTotal);
         }
 
-        // there is small bug
+
         if (theClickedButton.value === "=") {
-            result.textContent = "0";
-            result.textContent = total
+            // if (result.textContent.value === "0" || result.textContent.value === "") {
+            //     convertedTotal = "0";
+            // console.log("the = button triggered " + convertedTotal);
+
+            //     result.textContent = convertedTotal;
+            // } else {
+            //     result.textContent = "0";
+            //     result.textContent = convertedTotal;
+            // }
+            if (convertedTotal === "0") {
+                result.textContent = 0;
+                console.log("the = button triggered " + convertedTotal);
+
+            } else {
+                result.textContent = convertedTotal;
+
+            }
         }
 
-        // try to use slice method to get numb one and numb two
+
 
         // working 
         if (theClickedButton.value === "AC") {
+            convertedTotal = 0;
             result.textContent = "0";
         }
 
@@ -74,12 +76,33 @@ for (let i = 0; i < button; i++) { // working
     })
 }
 
+function splitNumber(operator) {
+    let splitted = tempHolder.split(`${operator}`);
+    let firstNumber = parseFloat(splitted[0]);
+    let secondNumber = parseFloat(splitted[1]);
+    if (operator === "+") {
+        total = add(firstNumber, secondNumber);
+        console.log("add function was called");
+    }
+    if (operator === "-") {
+        total = subtract(firstNumber, secondNumber);
+        console.log("subtract function was called");
+    }
+    if (operator === "/") {
+        total = division(firstNumber, secondNumber);
+        console.log("division function was called");
+    }
+    if (operator === "x") {
+        total = multiplication(firstNumber, secondNumber);
+        console.log("multiplication function was called");
+    }
+    return total.toString();
+}
+
 
 function add(num1, num2) {
     console.log(num1 + num2);
-
     return num1 + num2;
-
 }
 
 function subtract(num1, num2) {
@@ -89,26 +112,10 @@ function subtract(num1, num2) {
 
 function division(num1, num2) {
     console.log(num1 / num2);
-
     return num1 / num2;
 }
 
 function multiplication(num1, num2) {
     console.log(num1 * num2);
-
     return num1 * num2;
 }
-
-// function calculate(num1, num2, operator) {
-//     if (operator === "+") {
-//         return add(num1, num2);
-//     } else if (operator === "-") {
-//         return subtract(num1, num2);
-//     } else if (operator === "/") {
-//         return division(num1, num2);
-//     } else if (operator === "*") {
-//         return multiplication(num1, num2);
-//     } else {
-//         console.log("Wrong operator");
-//     }
-// }
