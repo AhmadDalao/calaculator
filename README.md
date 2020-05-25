@@ -1,7 +1,7 @@
 # calculator
 
 
-### It is a simple calculator built as a project to apply everything I learned about the DOM
+### It is a simple project built to apply everything I learned about the DOM
 
 
 ## Use the link below to see a live demo:
