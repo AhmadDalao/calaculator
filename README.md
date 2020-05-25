@@ -1,15 +1,13 @@
-# calaculator
+# calculator
 
 
-### is a tool to generate linear gradient css code.
+### is a simple calculator built as a project to apply everything I learned about the DOM
 
 
 ## Use the link below to see a live demo:
 
 - [Linear-Gradient-picker] https://ahmaddalao.github.io/Linear-Gradient-picker/
 
-
-## Just choose your colors and the corresponding linear gradient code will show up for you.
 
 ### Project was built using HTML CSS and JavaScript
 
